@@ -143,6 +143,7 @@ echo "/usr/bin                                                                  
 echo "/etc/tor                                                                          (config)"
 echo "/var/lib/tor                                                                      (data)"
 echo "/var/log/tor                                                                      (log)"
+echo "/usr/share/tor                                                                    (geoip)"
 echo ""
 echo "## COMMANDS ##"
 echo "cat /var/lib/tor/pt_state/obfs4_bridgeline.txt                                    (get bridge line)"
