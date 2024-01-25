@@ -35,6 +35,7 @@ curl -L https://gitlab.com/yawning/obfs4/-/archive/master/obfs4-master.tar.gz | 
 cd obfs4-master
 ../go/bin/go build -o obfs4proxy/obfs4proxy ./obfs4proxy
 mv obfs4proxy/obfs4proxy /usr/bin
+rm -r ../.cache/go-build
 setcap cap_net_bind_service=+ep /usr/bin/obfs4proxy
 echo ""
 echo -n "Press <any_key> to continue, now create Tor Bridge config."
