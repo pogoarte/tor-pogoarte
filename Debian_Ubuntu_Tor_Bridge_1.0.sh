@@ -21,7 +21,6 @@ fi
 
 ## INSTALL  ##
 clear
-cd /root
 apt update
 apt install -y apt-transport-https curl gpg nyx vnstat
 echo "deb     [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org $(lsb_release -cs) main" > /etc/apt/sources.list.d/tor.list
@@ -76,11 +75,9 @@ printf 'Please enter MaxAdvertisedBandwidth value in KBytes (ex: 1280):'
 read max_band
 echo ""
 printf 'Please enter PublishServerDescriptor value. 0 is private and 1 is public (ex: 1):'
-echo ""
 read pub_pvt
 echo ""
 printf 'Please enter BridgeDistribution value and press enter (ex: any):'
-echo ""
 read distrb
 echo ""
 printf 'Used for nyx, write your password for generate HashControlPassword and copy it (ex: my_nyx_control_password):'
@@ -89,6 +86,7 @@ tor --hash-password ${password}
 echo ""
 printf 'Used for nyx, please write your HashControlPassword just generated (ex: 16:55432A...):'
 read hash_control_passwd
+echo ""
 config_file_path="/etc/tor/torrc"
 config=$(printf "\
 User debian-tor
