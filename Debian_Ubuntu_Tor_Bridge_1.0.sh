@@ -93,8 +93,8 @@ config_file_path="/etc/tor/torrc"
 config=$(printf "\
 User debian-tor
 DataDirectory /var/lib/tor
-GeoIPFile /var/lib/tor/geoip
-GeoIPv6File /var/lib/tor/geoip6
+GeoIPFile /usr/share/tor/geoip
+GeoIPv6File /usr/share/tor/geoip6
 PidFile /run/tor/tor.pid
 Log notice file /var/log/tor/notices.log
 SocksPort 0
