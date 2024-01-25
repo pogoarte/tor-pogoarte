@@ -3,13 +3,9 @@
 clear
 echo ""
 echo "- This is an simple basic script for install, configure and running a Tor Bridge."
-echo ""
 echo "- Tested on Debian 11 Bullseye and Ubuntu Server LTS 22.04.3."
-echo ""
-echo "- Install apt-transport-https, curl, go, gpg, nyx, vnstat, last tor version (add repository torpoject), compile last obfs4proxy version from git and generate config for Tor Bridge."
-echo ""
+echo "- Install apt-transport-https, curl, go, gpg, nyx, vnstat, last tor version (add repository torproject), compile last obfs4proxy version from git and generate config for Tor Bridge."
 echo "- If your Tor Bridge is behind a FIREWALL or NAT, make sure to open or forward TCP port: ORPort and obfs4proxy."
-echo ""
 echo ""
 echo -n "Press <any_key> to continue or <ctrl+c> for terminate."
 read randomkey
