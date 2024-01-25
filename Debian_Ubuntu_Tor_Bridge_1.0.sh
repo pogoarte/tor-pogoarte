@@ -37,6 +37,7 @@ cd obfs4-master
 mv obfs4proxy/obfs4proxy /usr/bin
 rm -r ../.cache/go-build
 setcap cap_net_bind_service=+ep /usr/bin/obfs4proxy
+
 echo ""
 echo -n "Press <any_key> to continue, now create Tor Bridge config."
 read randomkey
@@ -44,8 +45,8 @@ read randomkey
 ## CONFIG ##
 clear
 echo ""
-printf 'Please enter your public DNS or IP and press enter (ex: mybridge.dyndns.org or 128.128.128.128):'
-read dns_ip
+printf 'Please enter your public IP and press enter (ex: 128.128.128.128):'
+read address_ip
 echo ""
 printf 'Please enter ORport port. If is behind a FIREWALL or NAT, make sure to open or forward TCP port (ex: 9001):'
 read orport_port
@@ -101,7 +102,7 @@ ControlPort 9051
 #CookieAuthFile /var/lib/tor/control_auth_cookie
 #ControlSocket /var/lib/tor/control_socket
 HashedControlPassword ${hash_control_passwd}
-Address ${dns_ip}
+Address ${address_ip}
 ORPort ${orport_port} ${orport_port_type}
 ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
 ServerTransportListenAddr obfs4 0.0.0.0:${obfs4_port}
@@ -116,7 +117,7 @@ BridgeDistribution ${distrb}
 ")
 echo "${config}" > "${config_file_path}"
 echo ""
-echo -n "Press <any_key> to continue, now start and ceck tor status."
+echo -n "Press <any_key> to continue, now start, ceck tor status and get bridge line."
 read randomkey
 
 ## START ##
@@ -127,6 +128,10 @@ systemctl enable --now tor.service
 systemctl start tor.service
 systemctl status tor.service
 echo ""
+fingerprint=$(cat "/var/lib/tor/fingerprint" | awk '{print $2}')
+cert=$(grep "cert=" "/var/lib/tor/pt_state/obfs4_bridgeline.txt" | cut -d ' ' -f6-)
+echo -e "Bridge line is: \e[44mBridge obfs4 $address_ip:$obfs4_port $fingerprint $cert\e[0m"
+echo""
 echo -n "Press <any_key> to continue, now see some useful info."
 read randomkey
 
@@ -141,7 +146,7 @@ echo "/var/log/tor                                                              
 echo "/usr/share/tor                                                                    (geoip)"
 echo ""
 echo "## COMMANDS ##"
-echo "cat /var/lib/tor/pt_state/obfs4_bridgeline.txt                                    (get bridge line)"
+echo "cat /var/lib/tor/pt_state/obfs4_bridgeline.txt                                    (get bridge line and cert)"
 echo "cat /var/lib/tor/fingerprint                                                      (get bridge identify key fingerprint)"
 echo "cat /var/log/tor/notices.log                                                      (get bridge hashed identify key fingerprint)"
 echo "cat /var/lib/tor/stats/bridge-stats                                               (look bridge stats info)"
