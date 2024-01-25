@@ -58,7 +58,7 @@ echo ""
 printf 'Please enter your Contact Info (ex: john.doe@google.com):'
 read contact_info
 echo ""
-printf 'Please enter your Nickname (ex: JohnDoe):'
+printf 'Please enter your Nickname, do not use spaces in the name (ex: JohnDoe):'
 read nickname
 echo ""
 printf 'Please enter BandwidthRate value in KBytes (ex: 1024):'
