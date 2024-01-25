@@ -12,9 +12,9 @@ echo "# - If Tor BRIDGE is behind a FIREWALL or NAT, make sure to open or forwar
 echo "# - If Tor PROXY is behind a FIREWALL make sure to open TCP port 9050."
 echo "# - It will take about 3/4 hours to complete everything on Raspberry Pi Zero W."
 ech""
-echo "# - BRIDGE RUN: /home/dietpi/tor/torstartb.sh"
-echo "# - PROXY RUN: /home/dietpi/tor/torstartp.sh"
-echo "# - STOP RUN: /home/dietpi/tor/trostop.sh"
+echo "# - START TOR BRIDGE: /home/dietpi/tor/torstartb.sh"
+echo "# - START TOR PROXY: /home/dietpi/tor/torstartpsh"
+echo "# - STOP TOR: /home/dietpi/tor/trostop.sh"
 ech""
 echo -n "Press <any_key> to continue or <ctrl+c> for terminate."
 read randomkey
@@ -48,13 +48,13 @@ install -c -m 600 src/config/geoip src/config/geoip6 '/home/dietpi/tor/data'
 
 echo "## TOR BRIDGE Start ##" > /home/dietpi/tor/torstartb.sh
 sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartb.sh
-sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.bridge' /home/dietpi/tor/torstartb.sh
+sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.bridge"' /home/dietpi/tor/torstartb.sh
 sed -i '$ a exit 0' /home/dietpi/tor/torstartb.sh
 chmod 700 /home/dietpi/tor/torstartb.sh
 
 echo "## TOR PROXY Start ##" > /home/dietpi/tor/torstartp.sh
 sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartp.sh
-sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.proxy' /home/dietpi/tor/torstartp.sh
+sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.proxy"' /home/dietpi/tor/torstartp.sh
 sed -i '$ a exit 0' /home/dietpi/tor/torstartp.sh
 chmod 700 /home/dietpi/tor/torstartp.sh
 
@@ -91,7 +91,7 @@ echo "ServerTransportPlugin obfs4 exec /home/dietpi/tor/bin/obfs4proxy" >> /home
 echo "ServerTransportListenAddr obfs4 0.0.0.0:9002" >> /home/dietpi/tor/etc/torrc.bridge
 echo "ExtORPort auto" >> /home/dietpi/tor/etc/torrc.bridge
 echo "ContactInfo bridge@pizero.org" >> /home/dietpi/tor/etc/torrc.bridge
-echo "Nickname BRiDGE_PiZERO" >> /home/dietpi/tor/etc/torrc.bridge
+echo "Nickname BRiDGEPiZERO" >> /home/dietpi/tor/etc/torrc.bridge
 echo "BandwidthRate 1024 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
 echo "BandwidthBurst 1536 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
 echo "MaxAdvertisedBandwidth 1280 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
