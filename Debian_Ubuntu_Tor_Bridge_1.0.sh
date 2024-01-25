@@ -37,7 +37,6 @@ cd obfs4-master
 mv obfs4proxy/obfs4proxy /usr/bin
 rm -r ../.cache/go-build
 setcap cap_net_bind_service=+ep /usr/bin/obfs4proxy
-
 echo ""
 echo -n "Press <any_key> to continue, now create Tor Bridge config."
 read randomkey
@@ -131,7 +130,7 @@ echo ""
 fingerprint=$(cat "/var/lib/tor/fingerprint" | awk '{print $2}')
 cert=$(grep "cert=" "/var/lib/tor/pt_state/obfs4_bridgeline.txt" | cut -d ' ' -f6-)
 echo -e "Bridge line is: \e[44mBridge obfs4 $address_ip:$obfs4_port $fingerprint $cert\e[0m"
-echo""
+echo ""
 echo -n "Press <any_key> to continue, now see some useful info."
 read randomkey
 
