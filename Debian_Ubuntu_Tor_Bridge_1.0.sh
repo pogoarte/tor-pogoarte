@@ -68,7 +68,7 @@ printf 'Please enter BandwidthBurst value in KBytes (ex: 1536):'
 read band_brust
 echo ""
 printf 'Please enter MaxAdvertisedBandwidth value in KBytes (ex: 1280):'
-read max_band
+read band_max
 echo ""
 printf 'Please enter PublishServerDescriptor value. 0 is private and 1 is public (ex: 1):'
 read pub_pvt
@@ -109,7 +109,7 @@ ContactInfo ${contact_info}
 Nickname ${nickname}
 BandwidthRate ${band_rate} KBytes
 BandwidthBurst ${band_brust} KBytes
-MaxAdvertisedBandwidth ${max_band} KBytes
+MaxAdvertisedBandwidth ${band_max} KBytes
 PublishServerDescriptor ${pub_pvt}
 BridgeDistribution ${distrb}
 ")
