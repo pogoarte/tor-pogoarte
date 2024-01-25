@@ -149,7 +149,7 @@ echo "cat /var/lib/tor/pt_state/obfs4_bridgeline.txt                            
 echo "cat /var/lib/tor/fingerprint                                                      (get bridge identify key fingerprint)"
 echo "cat /var/log/tor/notices.log                                                      (get bridge hashed identify key fingerprint)"
 echo "cat /var/lib/tor/stats/bridge-stats                                               (look bridge stats info)"
-echo "nyx                                                                               (tor monitor info, don't run it as root)"
+echo "nyx                                                                               (tor monitor info)"
 echo "vnstat                                                                            (network traffic monitor)"
 echo ""
 echo "## LINKS ##"
