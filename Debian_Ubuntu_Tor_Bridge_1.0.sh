@@ -4,7 +4,7 @@ clear
 echo ""
 echo "- This is an simple basic script for install, configure and running a Tor Bridge."
 echo ""
-echo "- Tested on Debian 11 Bullseye and Ubuntu Server LTS 22.04.3 (386 - amd64 - arm64)."
+echo "- Tested on Debian 11 Bullseye and Ubuntu Server LTS 22.04.3."
 echo ""
 echo "- Install apt-transport-https, curl, go, gpg, nyx, vnstat, last tor version (add repository torpoject), compile last obfs4proxy version from git and generate config for Tor Bridge."
 echo ""
