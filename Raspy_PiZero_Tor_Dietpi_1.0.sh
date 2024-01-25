@@ -49,13 +49,13 @@ install -c -m 600 src/config/geoip src/config/geoip6 '/home/dietpi/tor/data'
 echo "## TOR BRIDGE Start ##" > /home/dietpi/tor/torstartb.sh
 sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartb.sh
 sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.bridge' /home/dietpi/tor/torstartb.sh
-sed -i '$ a exit 0' /home/dietpi/tor//torstartb.sh
+sed -i '$ a exit 0' /home/dietpi/tor/torstartb.sh
 chmod 700 /home/dietpi/tor/torstartb.sh
 
 echo "## TOR PROXY Start ##" > /home/dietpi/tor/torstartp.sh
 sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartp.sh
 sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.proxy' /home/dietpi/tor/torstartp.sh
-sed -i '$ a exit 0' /home/dietpi/tor//torstartp.sh
+sed -i '$ a exit 0' /home/dietpi/tor/torstartp.sh
 chmod 700 /home/dietpi/tor/torstartp.sh
 
 echo "## TOR Stop ##" > /home/dietpi/tor/torstop.sh
