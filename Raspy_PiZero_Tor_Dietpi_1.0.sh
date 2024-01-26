@@ -46,20 +46,17 @@ chmod 700 /home/dietpi/tor/log
 install -c -m 700 src/app/tor src/tools/tor-resolve src/tools/tor-print-ed-signing-cert src/tools/tor-gencert '/home/dietpi/tor/bin'
 install -c -m 600 src/config/geoip src/config/geoip6 '/home/dietpi/tor/data'
 
-touch /home/dietpi/tor/torstartb.sh
-sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartb.sh
+echo "#Tor Bridge" > /home/dietpi/tor/torstartb.sh
 sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.bridge"' /home/dietpi/tor/torstartb.sh
 sed -i '$ a exit 0' /home/dietpi/tor/torstartb.sh
 chmod 700 /home/dietpi/tor/torstartb.sh
 
-touch /home/dietpi/tor/torstartp.sh
-sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstartp.sh
+echo "#Tor Proxy" > /home/dietpi/tor/torstartp.sh
 sed -i '$ a su - dietpi -c "/home/dietpi/tor/bin/tor -f /home/dietpi/tor/etc/torrc.proxy"' /home/dietpi/tor/torstartp.sh
 sed -i '$ a exit 0' /home/dietpi/tor/torstartp.sh
 chmod 700 /home/dietpi/tor/torstartp.sh
 
-touch /home/dietpi/tor/torstop.sh
-sed -i '$ a #!/bin/bash' /home/dietpi/tor/torstop.sh
+echo "#Tor Stop" > /home/dietpi/tor/torstop.sh
 sed -i '$ a pkill -e tor -9' /home/dietpi/tor/torstop.sh
 sed -i '$ a exit 0' /home/dietpi/tor/torstop.sh
 chmod 700 /home/dietpi/tor/torstop.sh
