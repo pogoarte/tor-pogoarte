@@ -110,7 +110,6 @@ echo "CookieAuthentication 1" >> /home/dietpi/tor/etc/torrc.proxy
 echo "CookieAuthFile /home/dietpi/tor/data/control_auth_cookie" >> /home/dietpi/tor/etc/torrc.proxy
 echo "ControlSocket /home/dietpi/tor/data/control_socket" >> /home/dietpi/tor/etc/torrc.proxy
 
-cd
 chmod 600 /home/dietpi/tor/etc/torrc*
 chown -R dietpi:dietpi /home/dietpi
 
