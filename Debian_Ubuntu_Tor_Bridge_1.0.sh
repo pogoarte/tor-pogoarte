@@ -126,10 +126,10 @@ systemctl daemon-reload
 systemctl enable --now tor.service
 systemctl start tor.service
 systemctl status tor.service
-echo ""
-fingerprint=$(cat "/var/lib/tor/fingerprint" | awk '{print $2}')
-cert=$(grep "cert=" "/var/lib/tor/pt_state/obfs4_bridgeline.txt" | cut -d ' ' -f6-)
-echo -e "Bridge line is: \e[44mBridge obfs4 $address_ip:$obfs4_port $fingerprint $cert\e[0m"
+#echo ""
+#fingerprint=$(cat "/var/lib/tor/fingerprint" | awk '{print $2}')
+#cert=$(grep "cert=" "/var/lib/tor/pt_state/obfs4_bridgeline.txt" | cut -d ' ' -f6-)
+#echo -e "Bridge line is: \e[44mBridge obfs4 $address_ip:$obfs4_port $fingerprint $cert\e[0m"
 echo ""
 echo -n "Press <any_key> to continue, now see some useful info."
 read randomkey
@@ -147,7 +147,7 @@ echo ""
 echo "## COMMANDS ##"
 echo "cat /var/lib/tor/pt_state/obfs4_bridgeline.txt                                    (get bridge line and cert)"
 echo "cat /var/lib/tor/fingerprint                                                      (get bridge identify key fingerprint)"
-echo "cat /var/log/tor/notices.log                                                      (get bridge hashed identify key fingerprint)"
+echo "cat /var/lib/tor/hashed-fingerprint                                               (get bridge hashed identify key fingerprint)"
 echo "cat /var/lib/tor/stats/bridge-stats                                               (look bridge stats info)"
 echo "nyx                                                                               (tor monitor info)"
 echo "vnstat                                                                            (network traffic monitor)"
