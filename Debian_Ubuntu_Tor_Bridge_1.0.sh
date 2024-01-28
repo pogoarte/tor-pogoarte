@@ -116,7 +116,7 @@ BridgeDistribution ${distrb}
 ")
 echo "${config}" > "${config_file_path}"
 echo ""
-echo -n "Press <any_key> to continue, now start, ceck tor status and get bridge line."
+echo -n "Press <any_key> to continue, now start, ceck tor status."
 read randomkey
 
 ## START ##
