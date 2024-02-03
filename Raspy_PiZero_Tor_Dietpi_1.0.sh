@@ -92,7 +92,7 @@ echo "Nickname BRiDGEPiZERO" >> /home/dietpi/tor/etc/torrc.bridge
 echo "BandwidthRate 1024 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
 echo "BandwidthBurst 1536 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
 echo "MaxAdvertisedBandwidth 1280 KBytes" >> /home/dietpi/tor/etc/torrc.bridge
-echo "PublishServerDescriptor 1" >> /home/dietpi/tor/etc/torrc.bridge
+echo "PublishServerDescriptor bridge" >> /home/dietpi/tor/etc/torrc.bridge
 echo "BridgeDistribution any" >> /home/dietpi/tor/etc/torrc.bridge
 
 echo "SOCKSPort 9050" > /home/dietpi/tor/etc/torrc.proxy
