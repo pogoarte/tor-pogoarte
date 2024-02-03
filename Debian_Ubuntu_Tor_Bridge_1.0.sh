@@ -71,9 +71,6 @@ echo ""
 printf 'Please enter MaxAdvertisedBandwidth value in KBytes (ex: 1280):'
 read band_max
 echo ""
-printf 'Please enter PublishServerDescriptor value. 0 is private and 1 is public (ex: 1):'
-read pub_pvt
-echo ""
 printf 'Please enter BridgeDistribution value and press enter (ex: any):'
 read distrb
 echo ""
@@ -111,7 +108,7 @@ Nickname ${nickname}
 BandwidthRate ${band_rate} KBytes
 BandwidthBurst ${band_brust} KBytes
 MaxAdvertisedBandwidth ${band_max} KBytes
-PublishServerDescriptor ${pub_pvt}
+PublishServerDescriptor bridge
 BridgeDistribution ${distrb}
 ")
 echo "${config}" > "${config_file_path}"
