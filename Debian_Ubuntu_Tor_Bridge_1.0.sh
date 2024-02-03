@@ -71,7 +71,10 @@ echo ""
 printf 'Please enter MaxAdvertisedBandwidth value in KBytes (ex: 1280):'
 read band_max
 echo ""
-printf 'Please enter BridgeDistribution value and press enter (ex: any):'
+printf 'Please enter PublishServerDescriptor value. "0" is private (ex: bridge):'
+read descrpt
+echo ""
+printf 'Please enter BridgeDistribution value. "none" is private (ex: any):'
 read distrb
 echo ""
 printf 'Used for nyx, write your password for generate HashControlPassword and copy it (ex: my_nyx_control_password):'
@@ -108,7 +111,7 @@ Nickname ${nickname}
 BandwidthRate ${band_rate} KBytes
 BandwidthBurst ${band_brust} KBytes
 MaxAdvertisedBandwidth ${band_max} KBytes
-PublishServerDescriptor bridge
+PublishServerDescriptor ${descrpt}
 BridgeDistribution ${distrb}
 ")
 echo "${config}" > "${config_file_path}"
