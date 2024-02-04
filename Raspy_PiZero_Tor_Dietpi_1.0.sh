@@ -61,15 +61,6 @@ echo "" >> /etc/systemd/system/tor.service
 echo "[Install]" >> /etc/systemd/system/tor.service
 echo "WantedBy=multi-user.target" >> /etc/systemd/system/tor.service
 
-cd
-curl -L https://go.dev/dl/go1.21.6.linux-armv6l.tar.gz | tar zxf -
-curl -L https://gitlab.com/yawning/obfs4/-/archive/master/obfs4-master.tar.gz | tar zxf -
-cd obfs4-master
-../go/bin/go build -o obfs4proxy/obfs4proxy ./obfs4proxy
-mv obfs4proxy/obfs4proxy /home/dietpi/tor/bin
-setcap cap_net_bind_service=+ep /home/dietpi/tor/bin/obfs4proxy
-rm -r ../.cache/go-build
-
 echo "DataDirectory /home/dietpi/tor/data" > /home/dietpi/tor/etc/torrc
 echo "GeoIPFile /home/dietpi/tor/data/geoip" >> /home/dietpi/tor/etc/torrc
 echo "GeoIPv6File /home/dietpi/tor/data/geoip6" >> /home/dietpi/tor/etc/torrc
@@ -96,11 +87,21 @@ echo "MaxAdvertisedBandwidth 1280 KBytes" >> /home/dietpi/tor/etc/torrc
 echo "PublishServerDescriptor bridge" >> /home/dietpi/tor/etc/torrc
 echo "BridgeDistribution any" >> /home/dietpi/tor/etc/torrc
 
+cd
+curl -L https://go.dev/dl/go1.21.6.linux-armv6l.tar.gz | tar zxf -
+curl -L https://gitlab.com/yawning/obfs4/-/archive/master/obfs4-master.tar.gz | tar zxf -
+cd obfs4-master
+../go/bin/go build -o obfs4proxy/obfs4proxy ./obfs4proxy
+mv obfs4proxy/obfs4proxy /home/dietpi/tor/bin
+setcap cap_net_bind_service=+ep /home/dietpi/tor/bin/obfs4proxy
+rm -r ../.cache/go-build
+
 chmod 600 /home/dietpi/tor/etc/torrc
 chown -R dietpi:dietpi /home/dietpi
 
 systemctl daemon-reload
 systemctl enable tor.service
 systemctl start tor.service
+systemctl status tor.service
 
 exit 0
