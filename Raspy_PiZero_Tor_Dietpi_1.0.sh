@@ -3,7 +3,7 @@
 clear
 echo""
 echo "# - Install and configure a Tor BRIDGE for Raspberry Pi Zero W and Dietpi 9.0.2."
-echo "# - Compile tor and obfs4proxy from git."
+echo "# - Compile tor and obfs4proxy from source."
 echo "# - Generate Tor BRIDGE config with socks disable and monitor enable (nyx)."
 echo "# - If Tor BRIDGE is behind a FIREWALL or NAT, make sure to open or forward TCP port 9001 and 9002."
 echo "# - It will take about 3/4 hours to complete everything on Raspberry Pi Zero W."
