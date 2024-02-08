@@ -17,14 +17,6 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 adduser --quiet --system --disabled-password --shell /bin/false --group debian-tor
-
-apt update
-apt install -y automake build-essential curl libevent-dev libssl-dev liblzma-dev libzstd-dev nyx pkg-config vnstat zlib1g-dev
-curl -L https://dist.torproject.org/tor-0.4.8.10.tar.gz | tar zxf -
-cd tor-0.4.8.10
-./configure --disable-asciidoc
-make
-
 mkdir /home/debian-tor/tor
 mkdir /home/debian-tor/tor/bin
 mkdir /home/debian-tor/tor/data
@@ -35,8 +27,24 @@ chmod 700 /home/debian-tor/tor/bin
 chmod 700 /home/debian-tor/tor/data
 chmod 700 /home/debian-tor/tor/etc
 chmod 700 /home/debian-tor/tor/log
+
+apt update
+apt install -y automake build-essential curl libevent-dev libssl-dev liblzma-dev libzstd-dev nyx pkg-config vnstat zlib1g-dev
+curl -L https://dist.torproject.org/tor-0.4.8.10.tar.gz | tar zxf -
+cd tor-0.4.8.10
+./configure --disable-asciidoc
+make
 install -c -m 700 src/app/tor src/tools/tor-resolve src/tools/tor-print-ed-signing-cert src/tools/tor-gencert '/home/debian-tor/tor/bin'
 install -c -m 600 src/config/geoip src/config/geoip6 '/home/debian-tor/tor/data'
+
+cd
+curl -L https://go.dev/dl/go1.21.6.linux-armv6l.tar.gz | tar zxf -
+curl -L https://gitlab.com/yawning/obfs4/-/archive/master/obfs4-master.tar.gz | tar zxf -
+cd obfs4-master
+../go/bin/go build -o obfs4proxy/obfs4proxy ./obfs4proxy
+mv obfs4proxy/obfs4proxy /home/debian-tor/tor/bin
+setcap cap_net_bind_service=+ep /home/debian-tor/tor/bin/obfs4proxy
+rm -r ../.cache/go-build
 
 echo "[Unit]" > /etc/systemd/system/tor.service
 echo "Description=TOR Anonymizing Overlay Network" >> /etc/systemd/system/tor.service
@@ -87,15 +95,6 @@ echo "BandwidthBurst 1536 KBytes" >> /home/debian-tor/tor/etc/torrc
 echo "MaxAdvertisedBandwidth 1280 KBytes" >> /home/debian-tor/tor/etc/torrc
 echo "PublishServerDescriptor bridge" >> /home/debian-tor/tor/etc/torrc
 echo "BridgeDistribution any" >> /home/debian-tor/tor/etc/torrc
-
-cd
-curl -L https://go.dev/dl/go1.21.6.linux-armv6l.tar.gz | tar zxf -
-curl -L https://gitlab.com/yawning/obfs4/-/archive/master/obfs4-master.tar.gz | tar zxf -
-cd obfs4-master
-../go/bin/go build -o obfs4proxy/obfs4proxy ./obfs4proxy
-mv obfs4proxy/obfs4proxy /home/debian-tor/tor/bin
-setcap cap_net_bind_service=+ep /home/debian-tor/tor/bin/obfs4proxy
-rm -r ../.cache/go-build
 
 chmod 600 /home/debian-tor/tor/etc/torrc
 chown -R debian-tor:debian-tor /home/debian-tor
