@@ -16,7 +16,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-adduser --quiet --system --disabled-password --shell /bin/false --group debian-tor
+adduser --quiet --system --disabled-password --home /home/debian-tor --shell /bin/false --group debian-tor
 mkdir /home/debian-tor/tor
 mkdir /home/debian-tor/tor/bin
 mkdir /home/debian-tor/tor/data
