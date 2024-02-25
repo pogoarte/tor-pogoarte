@@ -22,11 +22,11 @@ mkdir /home/debian-tor/tor/bin
 mkdir /home/debian-tor/tor/data
 mkdir /home/debian-tor/tor/etc
 mkdir /home/debian-tor/tor/log
-chmod 700 /home/debian-tor/tor
-chmod 700 /home/debian-tor/tor/bin
-chmod 700 /home/debian-tor/tor/data
-chmod 700 /home/debian-tor/tor/etc
-chmod 700 /home/debian-tor/tor/log
+chmod 770 /home/debian-tor/tor
+chmod 770 /home/debian-tor/tor/bin
+chmod 770 /home/debian-tor/tor/data
+chmod 770 /home/debian-tor/tor/etc
+chmod 770 /home/debian-tor/tor/log
 
 apt update
 apt install -y automake build-essential curl libevent-dev libssl-dev liblzma-dev libzstd-dev nyx pkg-config vnstat zlib1g-dev
@@ -34,8 +34,8 @@ curl -L https://dist.torproject.org/tor-0.4.8.10.tar.gz | tar zxf -
 cd tor-0.4.8.10
 ./configure --disable-asciidoc
 make
-install -c -m 700 src/app/tor src/tools/tor-resolve src/tools/tor-print-ed-signing-cert src/tools/tor-gencert '/home/debian-tor/tor/bin'
-install -c -m 600 src/config/geoip src/config/geoip6 '/home/debian-tor/tor/data'
+install -c -m 770 src/app/tor src/tools/tor-resolve src/tools/tor-print-ed-signing-cert src/tools/tor-gencert '/home/debian-tor/tor/bin'
+install -c -m 660 src/config/geoip src/config/geoip6 '/home/debian-tor/tor/data'
 
 cd
 curl -L https://go.dev/dl/go1.21.6.linux-armv6l.tar.gz | tar zxf -
@@ -96,7 +96,8 @@ echo "MaxAdvertisedBandwidth 1280 KBytes" >> /home/debian-tor/tor/etc/torrc
 echo "PublishServerDescriptor bridge" >> /home/debian-tor/tor/etc/torrc
 echo "BridgeDistribution any" >> /home/debian-tor/tor/etc/torrc
 
-chmod 600 /home/debian-tor/tor/etc/torrc
+chmod 660 /home/debian-tor/tor/etc/torrc
+usermod -a -G debian-tor dietpi
 chown -R debian-tor:debian-tor /home/debian-tor
 
 systemctl daemon-reload
